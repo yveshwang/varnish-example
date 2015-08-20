@@ -23,7 +23,8 @@ function handleRequest(request, response){
 
 dispatcher.onGet("/inm", function(req, res) {
   // throw in a if-none-match support, match on anything for now
-  if( req.headers['if-none-match'] != null) {
+  if( req.headers['if-none-match'] != null && req.headers['if-none-match'] == HASH) {
+    console.log('if-none-match: 304 -->');
     res.writeHead(304);
     res.end();
   } else {
@@ -34,7 +35,8 @@ dispatcher.onGet("/inm", function(req, res) {
 
 dispatcher.onGet("/ims", function(req, res) {
   // throw in a if-modified-since support, match on anything for now
-  if( req.headers['if-modified-since'] != null) {
+  if( req.headers['if-modified-since'] != null && req.headers['if-modified-since'] == HTTP_DATE) {
+    console.log('if-modified-since: 304 -->');
     res.writeHead(304);
     res.end();
   } else {
