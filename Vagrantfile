@@ -8,6 +8,7 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
 
   config.vm.network "forwarded_port", guest: 8080, host: 18080
+  config.vm.network "forwarded_port", guest: 6081, host: 16081
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
     echo installing varnish cache
